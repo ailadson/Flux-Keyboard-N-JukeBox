@@ -51,12 +51,25 @@
         <div>
         {
             !this.state.isRecording ?
-              <button onClick={this.startRecording}>Start Recording</button> :
-              <button onClick={this.stopRecording}>Stop Recording</button>
+              <button onClick={this.startRecording}
+                      onFocus={this.props.isTyping.bind(null, false)}>Start Recording</button> :
+              <button onClick={this.stopRecording}
+                      onFocus={this.props.isTyping.bind(null, false)}>Stop Recording</button>
         }
         <button onClick={this.play}>Play</button>
-        <button onClick={this.save}>Save Track</button>
-        <input placeholder="Name your track" val={this.state.track.name} type="text" onChange={this.changeName}/>
+        {
+          (this.state.track.roll.length > 0) ?
+            <span>
+              <button onClick={this.save}
+                      onFocus={this.props.isTyping.bind(null, false)}>Save Track</button>
+              <input placeholder="Name your track"
+                  val={this.state.track.name}
+                  type="text"
+                  onChange={this.changeName}
+                  onFocus={this.props.isTyping.bind(null, true)}/>
+            </span> :
+            <span></span>
+        }
         </div>
       );
     }

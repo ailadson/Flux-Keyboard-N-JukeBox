@@ -1,3 +1,7 @@
+/* global KeyStore */
+/* global React */
+/* global TONES */
+
 (function() {
   'use strict';
 
@@ -5,7 +9,7 @@
 
   window.Components.Organ = React.createClass({
     getInitialState: function() {
-      return {activeKeys: KeyStore.all()};
+      return {activeKeys: KeyStore.all(), isTyping: false };
     },
 
     componentDidMount: function(){
@@ -17,7 +21,13 @@
     },
 
     _changeActiveKeys: function(){
-      this.setState({ activeKeys: KeyStore.all() });
+      if(!this.state.isTyping){
+        this.setState({ activeKeys: KeyStore.all() });
+      }
+    },
+
+    changeIsTyping: function(bool){
+      this.setState({ isTyping: bool });
     },
 
     render: function(){
@@ -30,7 +40,7 @@
           <div className="organ">
             {keys}
             <br/>
-            <Components.Recorder />
+            <Components.Recorder isTyping={this.changeIsTyping}/>
           </div>
       );
     }
