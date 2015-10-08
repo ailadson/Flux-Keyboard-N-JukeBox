@@ -1,5 +1,7 @@
 /* global React */
 /* global Track */
+/* global TrackActions */
+/* global KeyStore */
 
 (function() {
   'use strict';
@@ -34,7 +36,8 @@
     },
 
     save: function(){
-      TrackActions.add(this.state.track);
+      var rollJSON = JSON.stringify(this.state.track.roll);
+      TrackActions.create({name: this.state.track.name, roll: rollJSON});
       this.setState({ track: new Track({}) });
     },
 

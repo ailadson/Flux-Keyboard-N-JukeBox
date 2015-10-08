@@ -12,6 +12,12 @@
     TrackStore.changed();
   };
 
+  var resetTracks = function(tracks){
+    console.log(tracks);
+    _tracks = tracks;
+    TrackStore.changed();
+  };
+
   var TrackStore = window.TrackStore = $.extend({}, EventEmitter.prototype,{
     all: function(){
       return _tracks.slice();
@@ -32,7 +38,10 @@
     dispatchID: AppDispatcher.register(function(action){
       switch(action.actionType){
         case TrackConstants.ADD_TRACK:
-          addTrack(action.track);
+          addTrack(action.resource);
+          break;
+        case TrackConstants.FETCH_TRACKS:
+          resetTracks(action.resources);
           break;
       }
     })

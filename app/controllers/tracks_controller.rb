@@ -10,8 +10,16 @@ class TracksController < ApplicationController
   end
 
   def index
+    @tracks = Track.all
+
+    render json: @tracks
   end
 
   def destroy
+  end
+
+  private
+  def track_params
+    params.require(:track).permit(:name, :roll)
   end
 end

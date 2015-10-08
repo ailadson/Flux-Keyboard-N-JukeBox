@@ -18,4 +18,5 @@
 //= require flux
 //= require eventemitter
 //= require components
+//= require util/web_api
 //= require_tree .

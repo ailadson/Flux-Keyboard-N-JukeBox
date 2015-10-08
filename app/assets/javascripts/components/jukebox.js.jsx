@@ -11,6 +11,7 @@
 
     componentDidMount: function () {
       TrackStore.addChangeHandler(this._updateTracks);
+      TrackActions.fetch();
     },
 
     componentWillUnmount: function(){

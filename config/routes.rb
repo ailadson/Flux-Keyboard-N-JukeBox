@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
-  get 'tracks/create'
-
-  get 'tracks/index'
-
-  get 'tracks/destroy'
+  resources :tracks, only: [:create, :index, :destroy]
 
   root 'static_pages#root'
 end
